@@ -14,83 +14,15 @@ Return the label of the town judg
 
 
 var findJudge = function (n, trust) {
-
-    if (trust.length === 1) {
-        return trust[0][1]
-    }
-    if (n === 1 && trust.length === 0) {
-        return 1
-    }
-    if (n !== 1 && trust.length === 0) {
-        return -1
-    }
-    // create hash table
-    const hash = {};
+    const arr = Array(n + 1).fill(0);
     for (let i = 0; i < trust.length; i++) {
-        const [person, trustPerson] = trust[i];
-        if (person in hash) {
-            hash[person] = { ...hash[person], [trustPerson]: trustPerson }
-        } else {
-            hash[person] = { [trustPerson]: trustPerson }
+        arr[trust[i][0]] -= 1
+        arr[trust[i][1]] += 1
+    }
+    for (let i = 1; i <= n; i++) {
+        if (arr[i] === n - 1) {
+            return i
         }
     }
-    let firstHash;
-    // extract the fitst object of the key in hash table
-    for (let key in hash) {
-        firstHash = hash[key]
-        break;
-    }
-    let judgeList = [];
-    // common Relatited to other
-    for (let firstHashKey in firstHash) {
-        let common = true;
-        for (let key in hash) {
-            if (!(firstHashKey in hash[key])) {
-                common = false
-                break
-            }
-        }
-        if (common) {
-            judgeList = [...judgeList, firstHashKey]
-        }
-    }
-
-    // check the common not involved in the all field
-
-    let judge;
-    for (let i in judgeList) {
-        if (!(judgeList[i] in hash)) {
-            judge = judgeList[i]
-            break
-        }
-    }
-
-    const allNum = {};
-    for (let i = 0; i < trust.length; i++) {
-        const [a, b] = trust[i];
-        if (b != judge) {
-            if (!(b in allNum)) {
-                allNum[b] = b
-            }
-        }
-        if (!(a in allNum)) {
-            allNum[a] = a
-        }
-    }
-    let allOccur = true;
-    for (let key in allNum) {
-        let state = false
-        for (let i = 0; i < trust.length; i++) {
-            if (trust[i][0] == key && trust[i][1] == judge) {
-                state = true;
-                break
-            }
-        }
-        if (!state) {
-            allOccur = false
-            break
-        }
-    }
-
-    return (allOccur && judge) ? judge : -1
+    return -1
 };
