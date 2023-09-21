@@ -51,3 +51,18 @@ var commonChars = function (words) {
     return result
 
 };
+
+
+// easy solution for that
+
+var commonChars = function (words) {
+    let res = [...words[0]];
+    for (let i = 1; i < words.length; i++) {
+        res = res.filter((c) => {
+            let len = words[i].length;
+            words[i] = words[i].replace(c, "")
+            return len > words[i].length
+        })
+    }
+    return res
+};
