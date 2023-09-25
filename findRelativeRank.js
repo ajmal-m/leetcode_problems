@@ -30,4 +30,4 @@ var findRelativeRanks = function (score) {
         }
     }
     return score
-};/**
+};
