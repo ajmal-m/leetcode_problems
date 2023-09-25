@@ -8,21 +8,26 @@ You are given an integer array score of size n, where score[i] is the score of t
 
 The athletes are placed based on their scores, where the 1st place athlete has the highest score, the 2nd place athlete has the 2nd highest score, and so on. The placement of each athlete determines their rank:
 */
+/**
+ * @param {number[]} score
+ * @return {string[]}
+ */
 var findRelativeRanks = function (score) {
-    let newScore = [...score];
-    newScore.sort((a, b) => (b - a));
+    let newScore = [...score].sort((a, b) => (b - a));
+    let hash = {};
     for (let i = 0; i < newScore.length; i++) {
-        for (let j = 0; j < score.length; j++) {
-            if (newScore[i] === score[j] && i === 0) {
-                score[j] = "Gold Medal"
-            } else if (newScore[i] === score[j] && i === 1) {
-                score[j] = "Silver Medal"
-            } else if (newScore[i] === score[j] && i === 2) {
-                score[j] = "Bronze Medal"
-            } else if (newScore[i] === score[j]) {
-                score[j] = (i + 1).toString()
-            }
+        hash[newScore[i]] = i + 1
+    }
+    for (let i = 0; i < score.length; i++) {
+        if (hash[score[i]] === 1) {
+            score[i] = "Gold Medal"
+        } else if (hash[score[i]] === 2) {
+            score[i] = "Silver Medal"
+        } else if (hash[score[i]] === 3) {
+            score[i] = "Bronze Medal"
+        } else {
+            score[i] = hash[score[i]].toString()
         }
     }
     return score
-};
+};/**
