@@ -24,3 +24,15 @@ var constructRectangle = function (area) {
     }
     return res
 };
+
+
+
+var constructRectangle = function(area) {
+    let mid = Math.floor(Math.sqrt(area));
+    for(let i=mid; i>=1; i--){
+        if(!(area%i)){
+            return [area/i, i]
+        }
+    }
+    return [area,1]
+};
