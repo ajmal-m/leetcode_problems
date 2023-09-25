@@ -11,27 +11,17 @@ Given a string word, return true if the usage of capitals in it is right.
  * @param {string} word
  * @return {boolean}
  */
+
 var detectCapitalUse = function (word) {
-    let hash = {
-        'A': true, 'B': true, 'C': true,
-        'D': true, "E": true, 'F': true, 'G': true, 'H': true, 'I': true,
-        'J': true, 'K': true, 'L': true, 'M': true, 'N': true, 'O': true,
-        'P': true, 'Q': true, 'R': true, 'S': true, 'T': true, 'U': true,
-        'V': true, 'W': true, 'X': true, 'Y': true, 'Z': true
-    }
-    let allCapital = true;
-    let allSmallLetter = true;
-    let firstCapital = true
-    for (let i = 0; i < word.length; i++) {
-        if ((word[i] in hash && i === 0)) {
-            firstCapital = true
-        } else if (word[i] in hash) {
-            firstCapital = false;
-            allSmallLetter = false
-        } else {
-            allCapital = false
+    let uppercaseCount = 0;
+    for (let letter of word) {
+        if (letter === letter.toUpperCase()) {
+            uppercaseCount++
         }
     }
-
-    return allCapital || allSmallLetter || firstCapital
+    if (uppercaseCount === 0 || uppercaseCount === word.length || (uppercaseCount === 1 && word[0] === word[0].toUpperCase())) {
+        return true
+    } else {
+        return false
+    }
 };
