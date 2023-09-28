@@ -43,4 +43,62 @@ var addToArrayForm = function(num, k) {
     
     return result
 };
+
+1005. Maximize Sum Of Array After K Negations
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var largestSumAfterKNegations = function(nums, k) {
+    nums.sort((a,b) => (a-b) );
+    for(let i=0; i< nums.length && k > 0 ; i++){
+      if(nums[i] < 0){
+        nums[i] *= -1;
+        k--;
+      }
+    }
+    if(k % 2=== 1){
+      nums.sort((a, b) => (a-b));
+      nums[0] *= -1;
+    }
+    let sum =0;
+    nums.forEach((item) => { sum += item})
+    return sum
+};
+
+
+Code
+
+Testcase
+
+1009. Complement of Base 10 Integer
+
+
+Code
+
+Testcase
+Testcase
+Result
+
+1013. Partition Array Into Three Parts With Equal Sum
+
+var canThreePartsEqualSum = function(arr) {
+    let sum = 0;
+    arr.forEach((item) => { sum += item });
+    if(sum % 3 !== 0){
+        return false
+    }
+    let n = sum/3;
+    let count = 0;
+    let countTime = 0;
+    for(let item of arr){
+        count += item;
+        if(count === n){
+            count = 0;
+            countTime += 1
+        }
+    }
+    return countTime >= 3;
+};
  
