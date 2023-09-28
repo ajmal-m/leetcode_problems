@@ -101,4 +101,26 @@ var canThreePartsEqualSum = function(arr) {
     }
     return countTime >= 3;
 };
+
+1018. Binary Prefix Divisible By 5
+
+1021. Remove Outermost Parentheses
+var removeOuterParentheses = function(s) {
+    let res = "";
+    let balance = 0;
+    for(let item of s){
+        if(item === '('){
+            if(balance > 0){
+                res += item
+            }
+            balance++;
+        }else{
+            balance--;
+            if(balance > 0){
+                res += item
+            }
+        }
+    }
+    return res
+};
  
