@@ -1,0 +1,46 @@
+977. Squres of a sorted array
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function(nums) {
+    const result = new Array(nums.length);
+    let left = 0;
+    let right = nums.length-1;
+    for(let i= nums.length-1 ; i>=0; i--){
+        if(Math.abs(nums[right]) < Math.abs(nums[left])){
+            result[i] = nums[left] ** 2
+            left++;
+        }else{
+            result[i] = nums[right] ** 2;
+            right--;
+        }
+    }
+    return result
+};
+
+
+989. ADD TO ARRAY FORM OF INTEGER___________
+ /**
+ * @param {number[]} num
+ * @param {number} k
+ * @return {number[]}
+ */
+var addToArrayForm = function(num, k) {
+    let n = num.length;
+    let carry = 0;
+    let i = n-1;
+    let result = []
+    while( carry >  0 || k > 0 || i >=0){
+        let digit = i >=0 ? num[i] : 0;
+        let sum = digit + k % 10  + carry;
+        result.unshift(sum % 10)
+        carry = parseInt(sum / 10)
+        k = parseInt(k/10)
+        i--;
+    }
+    
+    return result
+};
+ 
