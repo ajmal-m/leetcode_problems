@@ -93,6 +93,7 @@ var canThreePartsEqualSum = function(arr) {
     let count = 0;
     let countTime = 0;
     for(let item of arr){
+
         count += item;
         if(count === n){
             count = 0;
@@ -123,4 +124,24 @@ var removeOuterParentheses = function(s) {
     }
     return res
 };
- 
+
+1122. Relative Sort Array
+
+
+/**
+ * @param {number[]} arr1
+ * @param {number[]} arr2
+ * @return {number[]}
+ */
+var relativeSortArray = function(arr1, arr2) {
+    let hash = {};
+    for(let i=0; i< arr2.length; i++){
+        hash[arr2[i]] = i;
+    }
+    arr1.sort((a, b) => {
+        let indexA = a in hash ? hash[a] : arr2.length+a;
+        let indexB = b in hash ? hash[b] : arr2.length+b;
+        return indexA-indexB
+    })
+    return arr1
+};
