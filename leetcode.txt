@@ -207,3 +207,49 @@ var isSubString = function(seq, sub){
     }
     return false
 }
+
+
+NUMBER OF STUDENTS UNABLE TO EAT
+
+/**
+ * @param {number[]} students
+ * @param {number[]} sandwiches
+ * @return {number}
+ */
+var countStudents = function(students, sandwiches) {
+    const circularStudents = students.filter((student) => (student === 0));
+    const squareStudents = students.filter((student) => (student === 1));
+    for(let i=0; i < sandwiches.length; i++){
+        if(sandwiches[i] === 0 && circularStudents.length > 0){
+            circularStudents.shift()
+        }else if(sandwiches[i] === 1 && squareStudents.length > 0){
+            squareStudents.shift()
+        }else{
+            break
+        }
+    }
+    return circularStudents.length + squareStudents.length
+};
+
+
+MAXIMUM UNIT ON THE TRUCK
+
+/**
+ * @param {number[][]} boxTypes
+ * @param {number} truckSize
+ * @return {number}
+ */
+var maximumUnits = function(boxTypes, truckSize) {
+    boxTypes.sort((a, b) => (b[1] - a[1]));
+    let balanceSize = truckSize;
+    let maxUnits = 0;
+    for(let i=0; i< boxTypes.length; i++){
+        let addSize = Math.min(balanceSize, boxTypes[i][0]);
+        maxUnits += addSize * boxTypes[i][1];
+        balanceSize -= addSize;
+        if(balanceSize === 0){
+            break
+        }
+    }
+    return maxUnits
+};
