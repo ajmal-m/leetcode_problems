@@ -253,3 +253,68 @@ var maximumUnits = function(boxTypes, truckSize) {
     }
     return maxUnits
 };
+CALCULATE MONEY IN LEETCODE BANK
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var totalMoney = function(n) {
+    let investMoney = 1;
+    let totalInvest = 0;
+    let increment = 0;
+    for(let i=1; i<=n; i++){
+        if(i % 7 === 0){
+            totalInvest += increment + investMoney;
+            investMoney+=1;
+            increment = 0;
+        }else{
+            totalInvest += investMoney+increment;
+            increment++
+        }
+    }
+    return totalInvest
+};
+
+XOR
+There is a hidden integer array arr that consists of n non-negative integers.
+
+It was encoded into another integer array encoded of length n - 1, such that encoded[i] = arr[i] XOR arr[i + 1]. For example, if arr = [1,0,2,1], then encoded = [1,2,3].
+
+You are given the encoded array. You are also given an integer first, that is the first element of arr, i.e. arr[0].
+
+Return the original array arr. It can be proved that the answer exists and is unique.
+
+var decode = function (encoded, first) {
+    let arr = new Array(encoded.length + 1);
+    let n = encoded.length;
+    arr[0] = first;
+    for (let i = 0; i < n; i++) {
+        arr[i + 1] = arr[i] ^ encoded[i]
+    }
+    return arr
+}
+
+
+RECTANGLES CAN FORM MA SQUARES AREA MAIMUM
+
+
+/**
+ * @param {number[][]} rectangles
+ * @return {number}
+ */
+var countGoodRectangles = function(rectangles) {
+    let count = 0;
+    let maxSide = 0;
+    for(let i= 0; i< rectangles.length; i++){
+        let [len, width] = rectangles[i];
+        let side = Math.min(len, width);
+        if(side > maxSide){
+            maxSide = side;
+            count = 1;
+        }else if(side === maxSide){
+            count++
+        }
+    }
+    return count
+};
