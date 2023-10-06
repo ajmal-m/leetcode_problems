@@ -394,3 +394,6 @@ var maximumPopulation = function(logs) {
     }
     return maxYear
 };
+
+
+1863. Sum of All Subset XOR Totals
