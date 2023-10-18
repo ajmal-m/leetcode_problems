@@ -55,6 +55,12 @@ class BST{
         }
         return false
     }
+    display(){
+        if(this.root === null){
+            return this
+        }
+        
+    }
 }
 
 const bst = new BST();
