@@ -1,0 +1,77 @@
+navigate(-1) is used for back to the page;
+
+In React Router, when you use the navigate function with the { replace: true } option, it replaces the current entry in the navigation history with the new entry, effectively skipping the current page in the history. This can be useful in certain scenarios, particularly when you don't want the current page to be stored in the browser's history stack.
+
+* if not route defined it go to NotFound element
+    <Route path='*' element={<NotFound/>}></Route>
+
+
+* Nested Route can change content inside the route , use render child route use <Outlet/> 
+
+  <Route path='/products' element={<Products/>}>
+          <Route path='featured' element={<FeaturedProducts/>}/>
+          <Route path='new' element={<New/>}/>
+        </Route>
+   child route render in the parent route on <Outlet> in parent route
+
+* index route --> shows the child route on parent route
+
+    <Route path='/products' element={<Products/>}>
+          <Route index element={<FeaturedProducts/>}/>
+          <Route path='featured' element={<FeaturedProducts/>}>
+            <Route path='trending' element={<Trending/>}/>
+            <Route path='low-price' element={<Lowprice/>} />
+            <Route path='high-price' element={<HighPrice/>} />
+          </Route>
+          <Route path='new' element={<New/>}/>
+        </Route>
+
+* DYnamic Route, useParams -->  <Route path='/users/:userId' element={<UsersDetails/>}/>  --> get userId bu useParams() hook in react-router-dom in react
+
+* useSearchParams() --> <button onClick={() => setSearchParams({ filter:'active', name:'ajmal'})}>Active Users</button>  ,, filter the same page in react give the params to page and get the params by useSearchparams() and setuseSearchParams()
+
+  const [searchParams, setSearchParams] = useSearchParams();
+    const activeUsers = searchParams.get('filter') ? true: false;  --> use the get funtcion to get the value of the searchParams()\
+
+* Relative Link -->  <Link to="/featured">Featured</Link>  -- if we give the /featured it directly go to the featured
+ but in case <Link to="featured">Featured</Link> --> it go with its parent route in this case it parent route is /products so it go to /products/featured
+
+* Lazy Loading --> 
+let lazyAbout = lazy(() => import('./components/About'));
+<Route  path='/about' element={
+        <React.Suspense fallback="loading..">
+          <lazyAbout />
+        </React.Suspense>}/>
+
+* typical use of the useContext and createContext
+
+import React, { useState } from 'react';
+import { useContext, createContext } from 'react';
+
+const userContext = createContext(null);
+
+export const AuthProvider = ({children}) => {
+
+   // creating a context api
+  const [name, setName] = useState('');
+  const [place, setPlace] = useState('');
+  return (
+    <userContext.Provider value={{name, setName, place, setPlace}}>
+        {children}
+    </userContext.Provider>
+  )
+}
+
+const useAuth = () => {
+    return useContext(userContext)
+}
+
+export default useAuth
+
+
+
+*  Rules of Hooks
+ -> call at top level
+ -> call with in funtional componenets 
+
+

@@ -1,0 +1,15 @@
+
+
+ADS ( School Software )
+
+1. Main Admin ( company )
+ -> Add schools to software and give access code to school admin
+
+2. School Principal/ Head master
+ -> Add School class details and add teachers to list
+ -> send request to teachers belongs to that school or indivichual      add teachers to school
+
+3. Teacher Dashbord ( taecher dashborad ) 
+ 
+ -> Create Group and send request to student to Join to that group
+ -> 
