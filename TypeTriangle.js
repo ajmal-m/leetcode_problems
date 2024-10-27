@@ -42,3 +42,26 @@ if([...new Set(nums)].length == 2){
 return "scalene"
 
 };
+
+
+/**
+ * @param {number[]} nums
+ * @return {string}
+ */
+var triangleType = function(nums) {
+    let [a, b, c] = nums;
+    if(a == b  && b == c){
+        return "equilateral"
+    }
+
+    if(  ( (a+b) > c )&& ( (a+c) > b) && ( (b+c) > a) ){
+         if( a == b || a ==c || b == c){
+            return "isosceles"
+        }else{
+            return "scalene"
+        }
+    }
+
+    return "none"
+
+};
