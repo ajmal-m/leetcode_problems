@@ -58,3 +58,32 @@ var canMakeSquare = function(grid) {
 
     return false
 };
+
+
+/**
+ * @param {character[][]} grid
+ * @return {boolean}
+ */
+var canMakeSquare = function(grid) {
+    for(let i=0; i< 2; i++){
+        for(let j=0; j< 2; j++){
+            let cells = [
+                grid[i][j],
+                grid[i+1][j],
+                grid[i][j+1],
+                grid[i+1][j+1]
+            ];
+
+            let totalB = cells.filter((item) => (item == "B")).length;
+            let totalW = cells.filter((item) => (item == "W")).length;
+            if(totalB >= 3 || totalW >=3 ){
+                return true;
+            }
+        }
+    }
+
+
+    return false;
+
+    return false
+};
