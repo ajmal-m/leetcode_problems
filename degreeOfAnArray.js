@@ -93,3 +93,40 @@ var findShortestSubArray = function(nums) {
     return minLength == Infinity ? 1 : minLength;
 
 };
+
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findShortestSubArray = function(nums) {
+    let degree = 0;
+    let freq = {};
+    let firstIndex = {};
+    let lastIndex = {};
+
+    for(let i=0; i< nums.length; i++){
+        let num = nums[i];
+        if(! freq[num]){
+            freq[num] = 1;
+            firstIndex[num] = i;
+            lastIndex[num] = i;
+        }else{
+            freq[num]++;
+            lastIndex[num] = i;
+        }
+        degree = Math.max(degree, freq[num]);
+    }
+
+    let minLen = nums.length;
+
+    for(let num in freq){
+        if(freq[num] === degree){
+            let length = lastIndex[num] - firstIndex[num] + 1;
+            minLen = Math.min(minLen, length);
+        }
+    }
+
+    return minLen
+};
