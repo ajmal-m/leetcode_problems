@@ -41,3 +41,23 @@ Since they are friends, they would like to exchange one candy box each so that a
 Return an integer array answer where answer[0] is the number of candies in the box that Alice must exchange, and answer[1] is the number of candies in the box that Bob must exchange. If there are multiple answers, you may return any one of them. It is guaranteed that at least one answer exists.
  * 
  */
+
+/**
+ * @param {number[]} aliceSizes
+ * @param {number[]} bobSizes
+ * @return {number[]}
+ */
+var fairCandySwap = function(aliceSizes, bobSizes) {
+    let sumAlice = aliceSizes.reduce((a,b) => (a+b), 0);
+    let sumBob = bobSizes.reduce((a,b) => (a+b), 0);
+    let diff = (sumAlice - sumBob)/2;
+
+    let bobSet = new Set(bobSizes);
+
+    for(let item of aliceSizes){
+        let need = item-diff;
+        if(bobSet.has(need)){
+            return [item, need];
+        }
+    }
+};
