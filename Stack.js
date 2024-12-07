@@ -40,18 +40,23 @@ stack.push(55);
 
 stack.push(89);
 
-// console.log(stack.peak());
+console.log(stack.peak());
 
 stack.push(78);
 
 stack.push(67);
 
 
-stack.push(39);
+stack.push("ueyriuy32iury2");
 
 
 
 
-// console.log(stack.peak());
+console.log(stack.peak());
 
-console.log(stack.display());
+// stack.pop();
+
+console.log(stack.peak());
+
+
+// console.log(stack.display());
